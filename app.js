@@ -4,17 +4,20 @@ $(document).ready(function() {
 //variables
 
 var scoreCounter;
-var bankOfWords = ['Daniel','Szeto','Yellow','elephant'];
+var bankOfWords = ['Daniel','Szeto','Yellow','Green','January','February'];
 
-
-//add an event listener to start button
-$('#startgame').on("click",function(){
-	console.log("hello");
-
+function startGame() {
 	placeword();
+	console.log("linked");
 	timer();
+	$('#startgame').hide();
 
-	});
+	
+}
+//add an event listener to start button
+$('#startgame').on("click",startGame);
+	// console.log("hello");
+// $('#startgame').unbind("click",startGame);
 
 
 //add a timer 
@@ -25,8 +28,6 @@ function timer() {
 }, 1000);
 }
 
-
-
 //add words to appear on page
 
 function placeword() {
@@ -34,24 +35,20 @@ function placeword() {
 	var randno;
 	var quotes = bankOfWords;
 
-	//selects a random string from the array
+	// //selects a random string from the array
     randno = quotes[Math.floor( Math.random() * quotes.length )];
 
-    // var wordFinal = randno;
 
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < 3; i++) {
     	
-    	str = substitute(randno);
+    	randno = substitute(randno);
 
-    
-
-	    function substitute(str) { 
-		    var pos = Math.floor(Math.random()*str.length); 
-		    var letterTaken = str[pos];
+	    function substitute(randno) { 
+		    var pos = Math.floor(Math.random()*randno.length); 
+		    var letterTaken = randno[pos];
 		    console.log(letterTaken);
 		    $('#letters').append("<p>" + letterTaken + "</p>");
-		    return str.substring(0, pos) + getRandomLetter() + str.substring(pos+1); 
-
+		    return randno.substring(0, pos) + getRandomLetter() + randno.substring(pos+1); 
 	} 
 
 		function getRandomLetter() { 
@@ -63,6 +60,11 @@ function placeword() {
 		}
 
 	}
+
+	$('#word').append("<p>" + randno + "</p>");
+	console.log(randno); 
+
+
 // $('#letters').append("<p>" + letterTaken + "</p>");
 
 
@@ -88,9 +90,6 @@ function placeword() {
 
 
 }
-
-
-
-
-
 });
+
+
