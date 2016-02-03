@@ -1,0 +1,58 @@
+button {
+	width: 80px;
+	height: 50px;
+	margin: 2pc;
+
+}
+
+/*body {
+	background-color: #ffff;
+}*/
+
+
+#container {
+    height: 35em;
+    width: 25em;
+    /*padding: 10em;*/
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4em;
+    
+}
+
+#score {
+	border-radius: 50%;
+	width: 80px;
+	height: 80px; 
+	border: 1px solid black;
+	
+
+
+}
+
+
+#timer {
+	width: 100px;
+	height: 50px;
+	background: white;
+	border: 1px solid black;
+}
+
+#word {
+	height: 3em;
+    width: 10em;
+    padding: 1em;
+    border: 1px solid black;
+    margin-top: 2em;
+
+}
+
+#letters {
+	height: 2em;
+    width: 10em;
+    padding: 1em;
+    border: 1px solid black;
+    margin-top: 2em;
+
+}
