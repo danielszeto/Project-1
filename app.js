@@ -5,13 +5,17 @@ $(document).ready(function() {
 
 var scoreCounter;
 var bankOfWords = ['Daniel','Szeto','Yellow','elephant'];
-placeword();
-timer();
+
 
 //add an event listener to start button
 $('#startgame').on("click",function(){
 	console.log("hello");
-});
+
+	placeword();
+	timer();
+
+	});
+
 
 //add a timer 
 function timer() {
