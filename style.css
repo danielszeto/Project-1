@@ -56,3 +56,10 @@ button {
     margin-top: 2em;
 
 }
+
+.letter {
+	color: blue;
+	font-size: 23px;
+	border: 14px;
+	border-color: black;
+}
