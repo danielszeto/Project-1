@@ -1,21 +1,36 @@
 console.log("linked");
-$(document).ready(function() {
-	//console.log("hello");
 
-	// Variables
-
-	var scoreCounter;
+// Variables
+var scoreCounter;
 	var bankOfWords = ['Daniel','Szeto','Yellow','Green','January','February'];
 	var randWord;
 	var correctAnswer = [];
 	var guesses = [];
 	var currentWord;
 	var checkCorrect;
-	
+	var guessesInput = [];
+
+
+$(document).ready(function() {
+	//console.log("hello");
 
 
 
-	//starts the game 
+
+    
+
+	//add an event listener to start button
+	$('#startgame').on("click",startGame);
+		// console.log("hello");
+	// $('#startgame').unbind("click",startGame);
+
+	//add an event listener to reset button
+	$('#resetgame').on("click",resetGame);
+ 
+  
+});
+
+//starts the game 
 		//initizes placeword and timer functions
 		//hides the start button affer click
 	function startGame() {
@@ -23,7 +38,28 @@ $(document).ready(function() {
 		timer();
 		$('#startgame').hide();
 		
+		for (var i = 0; i < 2; i++) {
+	    
+	    	randWord = substitute(randWord);
+			correctAnswer.push(letterTaken);
+		    console.log(correctAnswer, letterTaken);
 
+
+
+		}
+
+		$('.letter').on('click', function(e) {
+	        guesses.push(e.target.innerHTML); 
+	        console.log(this);
+	        $(this).append($);
+	        $(this).remove();
+
+	        console.log(guesses);
+	        $();
+
+		});
+
+		$('#word').append("<p>" + (randWord.split()) + "</p>");
 
 	}
 
@@ -33,17 +69,6 @@ $(document).ready(function() {
 		location.reload();
 
 	}
-
-
-	//add an event listener to start button
-	$('#startgame').on("click",startGame);
-		// console.log("hello");
-	// $('#startgame').unbind("click",startGame);
-
-	//add an event listener to reset button
-	$('#resetgame').on("click",resetGame);
-
-
 	//add a timer 
 		//starts the timer at count "x" seconds 
 	function timer() {
@@ -63,46 +88,46 @@ $(document).ready(function() {
 
 		// var randWord;
 		var quotes = bankOfWords;
+		var letterTaken;
 		
 
 		// //selects a random string from the array
 	    randWord = quotes[Math.floor( Math.random() * quotes.length )];
+	    console.log('random word: ', randWord);
 	    currentWord = randWord;
+    }
 
 
-	    for (var i = 0; i < 2; i++) {
-	    	
-	    	randWord = substitute(randWord);
-	    	var lettersTaken;
+// for (var i = 0; i < currentWord; i++ ) {
+// 	if (currentWord[i] == "") {
 
-		    function substitute(randWord) { 
-			    var subPos = Math.floor(Math.random()*randWord.length);
-			    lettersTaken = randWord[subPos];
-			    console.log(lettersTaken);
-			    $('#letters').append("<p class='letter'>" + lettersTaken + "</p>");
-			    return randWord.substring(0, subPos) + getRandomLetter() + randWord.substring(subPos+1); 
-		} 
+// 	}
+// }
 
-			function getRandomLetter() {
+	function getRandomLetter() {
 			    var  replaceWith= " "; 
 			    var randPos = Math.floor(Math.random()*replaceWith.length); 
-			    console.log(randWord[randPos ]);
-				return replaceWith.charAt(randPos ); 
-			}
+			    console.log(randWord[randPos]);
+				return replaceWith.charAt(randPos); 
+	}
 
-				correctAnswer.push(lettersTaken);
-			    console.log(correctAnswer, lettersTaken);
+	function substitute(randWordParam) { 
+		    	console.log('calling substitute');
+			    var subPos = Math.floor(Math.random()*randWordParam.length);
+                console.log('random index: ', subPos);			    
+			    letterTaken = randWord[subPos];
+			    guessesInput[subPos] = letterTaken;
+			    console.log(letterTaken);
+			    console.log(guessesInput, typeof guessesInput);
 
-		}
+			    $('#letters').append("<p class='letter'>" + letterTaken + "</p>");
+			    return randWord.substring(0, subPos) + getRandomLetter() + randWord.substring(subPos+1); 
+	} 
+		
 
-			$('.letter').on('click', function(e) {
-		        guesses.push(e.target.innerHTML); 
-		        $(this).remove();
+	    
 
-		        console.log(guesses);
-		        $();
- 
-	    	});
+			
 
 	    	// CHECK TO SEE IF CORRECT ANSWER LOGIC
 
@@ -125,13 +150,7 @@ $(document).ready(function() {
 
 
 
-		$('#word').append("<p>" + (randWord.split()) + "</p>");
-
-
-
-		console.log(randWord);
-		console.log(currentWord);
-
+		
 
 
 
@@ -173,13 +192,5 @@ $(document).ready(function() {
 		//&& if the next later matches" e", correct
 		//if not, incorrect
 
-
-
-	}
-
-
-
-
-});
 
 
