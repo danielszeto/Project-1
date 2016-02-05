@@ -120,7 +120,7 @@ $(document).ready(function() {
 	//add a timer 
 		//starts the timer at count "x" seconds 
 	function timer() {
-		var count = 2, timer = setInterval(function() {
+		var count = 20, timer = setInterval(function() {
 	    $("#timer").html(count);
 	    count--;
 	    if(count === -1) {
@@ -128,7 +128,6 @@ $(document).ready(function() {
 
 	    $('#word').append('<span>' + 'GAMEOVER' + '</span>');
 	    $('#word').css("border","0px solid #f05131");
-	    $('#word').css("color","#f9af2b");
 
 
 

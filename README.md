@@ -2,6 +2,8 @@
 
 How to play: Click the letters to fill in the word. You have 20 seconds after you press start to fill in as many words as possible!
 
+Play! https://www.bitballoon.com/sites/preacher-smoke-53225
+
 # Planning
 
 * Trello: https://trello.com/b/vGZyZSdw/project-1-game
