@@ -89,11 +89,10 @@ span {
 }
 
 .letter {
-	/*border: 4px dotted black;*/
 	color: #3fa2b0;
-	font-size: 32px;
+	font-size: 45px;
 	display: inline-block;
-	margin: 7px;
+	margin: 25px;
 	
 }
 
