@@ -9,15 +9,29 @@ button {
 	background-color: #ffff;
 }*/
 
+h1 {
+	color: #4d5857;
+}
+
+h2 {
+	text-align: center;
+	font-size: 15px;
+	height: 1em;
+    width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+
+}
 
 #container {
     height: 35em;
     width: 25em;
     /*padding: 10em;*/
-    border: 1px solid black;
+    border: 11px solid #4d5857;
     margin-left: auto;
     margin-right: auto;
     margin-top: 4em;
+    background-color: #f9af2b;
     
 }
 
@@ -25,40 +39,69 @@ button {
 	border-radius: 50%;
 	width: 80px;
 	height: 80px; 
-	border: 1px solid black;
+	border: 4px solid #f05131;
+	float: left;
+	text-align: center;
+	font-size: 3pc;
 	
-
-
 }
 
 
 #timer {
-	width: 100px;
-	height: 50px;
-	background: white;
-	border: 1px solid black;
+	width: 120px;
+	height: 70px;
+	border: 4px solid #f05131;
+	float: right;
+	font-size: 3pc;
+	text-align: center;
 }
 
 #word {
-	height: 3em;
-    width: 10em;
-    padding: 1em;
-    border: 1px solid black;
-    margin-top: 2em;
+	height: 100px;
+    width: 200px;
+    border: 4px solid #f05131;
+    margin-top: 10em;
+    clear: both;
+    margin: 0 auto;
+    font-size: 32px;
+	text-align: center
+
 
 }
 
 #letters {
-	height: 2em;
-    width: 10em;
+	height: 1em;
+    width: 15em;
     padding: 1em;
-    border: 1px solid black;
     margin-top: 2em;
+    margin: 50px auto;
+    color: #3fa2b0;
+
+
+
 
 }
 
 .letter {
-	color: blue;
-	font-size: 23px;
-	border-color: black;
+	/*border: 4px dotted black;*/
+	color: #3fa2b0;
+	font-size: 32px;
+	text-align: center;
+	display: inline-block;
+	margin: 7px;
+	
 }
+
+.hidden {
+	opacity: 0;
+}
+
+
+.btn {
+	background: #f08e2b;
+	border: 5px solid #4d5857;
+}
+
+
+
+

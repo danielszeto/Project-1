@@ -1,23 +1,20 @@
 console.log("linked");
 
 // Variables
-var scoreCounter;
-	var bankOfWords = ['Daniel','Szeto','Yellow','Green','January','February'];
+	var scoreCounter = 0;
+	var bankOfWords = ["Yellow","Green","Blue","Purple","Black",];
 	var randWord;
 	var correctAnswer = [];
 	var guesses = [];
 	var currentWord;
 	var checkCorrect;
 	var guessesInput = [];
+	var condensedArray = [];
+	
 
 
 $(document).ready(function() {
 	//console.log("hello");
-
-
-
-
-    
 
 	//add an event listener to start button
 	$('#startgame').on("click",startGame);
@@ -37,31 +34,94 @@ $(document).ready(function() {
 		placeword();
 		timer();
 		$('#startgame').hide();
+
 		
 		for (var i = 0; i < 2; i++) {
-	    
+	    	
 	    	randWord = substitute(randWord);
 			correctAnswer.push(letterTaken);
-		    console.log(correctAnswer, letterTaken);
-
-
+		    console.log("correctAnswer:" + correctAnswer, "letterTaken:" + letterTaken);
 
 		}
 
-		$('.letter').on('click', function(e) {
-	        guesses.push(e.target.innerHTML); 
+		$('body').on('click','.letter', function(e) {
+			//guesses[index] = e.target.innerHTML
+			var letterIGuessed = $(this).html(); // this is the letter that was clicked
+	        // guesses.push($(this).html()); 
 	        console.log(this);
-	        $(this).append($);
-	        $(this).remove();
+	        // $(this).remove();
+
 
 	        console.log(guesses);
-	        $();
+	        //compare guesses to condensedArray
+	        //if same, game won
+	        console.log(guessesInput);
+	        console.log("daniel this is what is left:",condensedArray);
+	        if (condensedArray.length === 0 ) {
+	        	//get next word
+	        	console.log('function is working');
+	        	placeword();
+	        	
+	        }
+	        else {
+	        	//check if letter is correct
+	        	checkIfRightWord(letterIGuessed);
+	        }
+
 
 		});
 
 		$('#word').append("<p>" + (randWord.split()) + "</p>");
 
+		condenseArray(guessesInput);
+		console.log("condensed array " +condensedArray);
+
 	}
+
+	//as soon as 2 letters have been clicked, generate new word
+
+			function checkIfRightWord(guessedLetter) {
+				$('#word').empty();
+
+
+			if (guessedLetter === condensedArray[0]) {
+				scoreCounter++;
+				condensedArray.shift();
+				console.log("this is after it is removed", condensedArray);
+				if(condensedArray.length===0){
+					//get next word here
+					var newWord = placeword();
+					guessesInput=[];
+					correctAnswer=[];
+					console.log("this is the new word",newWord);
+					$('#letters').empty();
+					for (var i = 0; i < 2; i++) {
+				    	randWord = substitute(newWord);
+						correctAnswer.push(letterTaken);
+					    console.log("correctAnswer:" + correctAnswer, "letterTaken:" + letterTaken);
+					}
+					condenseArray(guessesInput);
+
+					
+
+
+
+				}
+			}
+
+			else { scoreCounter--;}
+
+				
+
+
+				$('#score').html(scoreCounter);
+
+				$('#word').append("<p>" + (randWord.split()) + "</p>");
+
+
+
+			}
+
 
 	//refreshes the page so user can start new game
 	function resetGame() {
@@ -72,7 +132,7 @@ $(document).ready(function() {
 	//add a timer 
 		//starts the timer at count "x" seconds 
 	function timer() {
-		var count = 4, timer = setInterval(function() {
+		var count = 45, timer = setInterval(function() {
 	    $("#timer").html(count);
 	    count--;
 	    if(count === -1) {
@@ -89,12 +149,16 @@ $(document).ready(function() {
 		// var randWord;
 		var quotes = bankOfWords;
 		var letterTaken;
-		
+		var randomNumber=Math.floor( Math.random() * quotes.length );
 
 		// //selects a random string from the array
-	    randWord = quotes[Math.floor( Math.random() * quotes.length )];
+	    randWord = quotes[randomNumber];
 	    console.log('random word: ', randWord);
 	    currentWord = randWord;
+	    console.log("bank before splice", bankOfWords);
+	    bankOfWords.splice(randomNumber, 1);
+	    console.log("bank after splice", bankOfWords);
+	    return randWord;
     }
 
 
@@ -103,7 +167,7 @@ $(document).ready(function() {
 
 // 	}
 // }
-
+	//replaces the letter from word and substitute it with blank
 	function getRandomLetter() {
 			    var  replaceWith= " "; 
 			    var randPos = Math.floor(Math.random()*replaceWith.length); 
@@ -111,86 +175,45 @@ $(document).ready(function() {
 				return replaceWith.charAt(randPos); 
 	}
 
+	//Taking a random letter from the word and called getRandLetter to replace the letter with ""
 	function substitute(randWordParam) { 
-		    	console.log('calling substitute');
-			    var subPos = Math.floor(Math.random()*randWordParam.length);
-                console.log('random index: ', subPos);			    
-			    letterTaken = randWord[subPos];
-			    guessesInput[subPos] = letterTaken;
-			    console.log(letterTaken);
-			    console.log(guessesInput, typeof guessesInput);
+    	console.log('calling substitute');
+    	//unless 1 
+	    var subPos = Math.floor(Math.random()*randWordParam.length);
+        console.log('random index: ', subPos);			    
+	    letterTaken = randWord[subPos];
 
-			    $('#letters').append("<p class='letter'>" + letterTaken + "</p>");
-			    return randWord.substring(0, subPos) + getRandomLetter() + randWord.substring(subPos+1); 
+	    if (letterTaken == " ") {
+	    	var subPos = Math.floor(Math.random()*randWordParam.length);
+	    	letterTaken = randWord[subPos];
+	    }
+
+	    guessesInput[subPos]=letterTaken;
+	    console.log("letterTaken inside substitute:"+letterTaken);
+	    console.log(guessesInput, typeof guessesInput);
+
+	    $('#letters').append("<p class='letter'>" + letterTaken + "</p>");
+	    return randWord.substring(0, subPos) + getRandomLetter() + randWord.substring(subPos+1); 
 	} 
 		
+	//for loop
+	//if (guessesInput[i]), newArray.push{guessesInput[i])
+	function condenseArray(array){
+		var i;
+		for (i = 0; i <= guessesInput.length; i++) {
+			if (guessesInput[i]) { 
+				condensedArray.push(guessesInput[i]);
+			}
 
-	    
+		}
+	}
 
-			
+		function placeNewWord(){
+		if (condensedArray = []) {
+			placeword();
 
-	    	// CHECK TO SEE IF CORRECT ANSWER LOGIC
-
-	    	// checkCorrect = randWord.split("");
-	   		
-	   		// var i;
-	   		// for (i = 0; i < randWord.length; i++) {
-	   		// 	var x;
-	   		// 	for (x = 0; x < guesses.length; x++) {
-	   		// 		if (checkCorrect[i] === " ") {
-	   		// 			checkCorrect[i] = guesses[x];
-	   		// 			break;
-	   		// 		}
-	   		// 	}
-	   		// }
-
-	   		// if (checkCorrect.join("") === currentWord) {
-	   		// 	alert('YAY');
-	   		// }
+		}
 
 
-
-		
-
-
-
-
-
-
-
-
-		
-
-
-	// $('#letters').append("<p>" + letterTaken + "</p>");
-
-
-			// function removeRandomLetter(str) {
-			//     var pos = Math.floor(Math.random()*str.length);
-			//     return str.substring(0, pos)+str.substring(pos+1);
-			// }
-
-		
-
-		
-	    // console.log(randWord);
-
-		
-		// var randomWord;
-		
-		// for (var i = 0, i < bankOfWords.length, i++) {
-
-		// 	$("#word").append("<p>" + "randomWord" + "</p>")
-		// };
-
-		//var current = "Daniel"
-		//randWord = "D_nie_"
-
-		//charAt
-
-		//if the letter clicked matches "a", & if the next letter clicked matches "i", 
-		//&& if the next later matches" e", correct
-		//if not, incorrect
-
-
+	}
 
