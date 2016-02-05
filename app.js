@@ -2,7 +2,7 @@ console.log("linked");
 
 // Variables
 	var scoreCounter = 0;
-	var bankOfWords = ["Yellow","Green","Blue","Purple","Black",];
+	var bankOfWords = ["Yellow","Green","Blue","Purple","Black","Teal"];
 	var randWord;
 	var correctAnswer = [];
 	var guesses = [];
@@ -19,7 +19,7 @@ $(document).ready(function() {
 	//add an event listener to start button
 	$('#startgame').on("click",startGame);
 		// console.log("hello");
-	// $('#startgame').unbind("click",startGame);
+	// $('#startgame').off("click",startGame);
 
 	//add an event listener to reset button
 	$('#resetgame').on("click",resetGame);
@@ -34,6 +34,7 @@ $(document).ready(function() {
 		placeword();
 		timer();
 		$('#startgame').hide();
+
 
 		
 		for (var i = 0; i < 2; i++) {
@@ -132,11 +133,13 @@ $(document).ready(function() {
 	//add a timer 
 		//starts the timer at count "x" seconds 
 	function timer() {
-		var count = 45, timer = setInterval(function() {
+		var count = 20, timer = setInterval(function() {
 	    $("#timer").html(count);
 	    count--;
 	    if(count === -1) {
 	    	clearInterval(timer);
+
+	    alert("Gameover!")
 
 	    }
 	}, 1000);
