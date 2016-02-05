@@ -12,27 +12,18 @@ console.log("linked");
 	var condensedArray = [];
 	
 $(document).ready(function() {
-	//console.log("hello");
 
-	//inititiates startGame funciton when start button is clicked
 	$('#startgame').on("click",startGame);
-		// console.log("hello");
-
-	//Resets game when reset button is clicked
 	$('#resetgame').on("click",resetGame);
  
   
 });
 
-//starts the game 
-		//initizes placeword and timer functions
-		//hides the start button affer click
 	function startGame() {
 		placeword();
 		timer();
 		$('#startgame').hide();
 
-		//loops over the word twice
 		for (var i = 0; i < 2; i++) {
 	    	
 	    	randWord = substitute(randWord);
@@ -42,20 +33,11 @@ $(document).ready(function() {
 		}
 
 		$('body').on('click','.letter', function(e) {
-			//guesses[index] = e.target.innerHTML
 			var letterIGuessed = $(this).html(); // this is the letter that was clicked
-	        // guesses.push($(this).html()); 
-	        // console.log(this);
-	        // $(this).remove();
-	        // console.log(guesses);
-	        //compare guesses to condensedArray
-	        //if same, game won
-	        console.log(guessesInput);
-	        console.log("daniel this is what is left:",condensedArray);
+
 	        if (condensedArray.length === 0 ) {
-	        	//get next word
-	        	// console.log('function is working');
-	        	placeword();
+				
+				placeword();
 	        	
 	        }
 	        else {
@@ -69,31 +51,27 @@ $(document).ready(function() {
 		$('#word').append("<p>" + (randWord.split()) + "</p>");
 
 		condenseArray(guessesInput);
-		// console.log("condensed array " +condensedArray);
 
 	}
 
-
-
-			function checkIfRightWord(guessedLetter) {
-				$('#word').empty()
+	function checkIfRightWord(guessedLetter) {
+				
+		$('#word').fadeOut("normal".empty()
 
 
 			if (guessedLetter === condensedArray[0]) {
 				scoreCounter++;
 				condensedArray.shift();
-				console.log("this is after it is removed", condensedArray);
+				
 				if(condensedArray.length===0){
 					//get next word here
 					var newWord = placeword();
 					guessesInput=[];
 					correctAnswer=[];
-					console.log("this is the new word",newWord);
-					$('#letters').fadeOut().empty();
+					$('#letters').empty();
 					for (var i = 0; i < 2; i++) {
 				    	randWord = substitute(newWord);
 						correctAnswer.push(letterTaken);
-					    console.log("correctAnswer:" + correctAnswer, "letterTaken:" + letterTaken);
 					}
 					condenseArray(guessesInput);
 
@@ -108,7 +86,7 @@ $(document).ready(function() {
 
 
 
-			}
+	}
 
 
 	//refreshes the page so user can start new game
@@ -120,17 +98,13 @@ $(document).ready(function() {
 	//add a timer 
 		//starts the timer at count "x" seconds 
 	function timer() {
-		var count = 2, timer = setInterval(function() {
+		var count = 20, timer = setInterval(function() {
 	    $("#timer").html(count);
 	    count--;
 	    if(count === -1) {
 	    	clearInterval(timer);
 
-	    $('#word').append('<span>' + 'GAMEOVER' + '</span>');
-	    $('#word').css("border","0px solid #f05131");
-	    $('#word').css("color","#f9af2b");
-
-
+	    alert("Gameover!")
 
 	    }
 	}, 1000);
@@ -147,30 +121,24 @@ $(document).ready(function() {
 
 		// //selects a random string from the array
 	    randWord = quotes[randomNumber];
-	    console.log('random word: ', randWord);
 	    currentWord = randWord;
-	    console.log("bank before splice", bankOfWords);
 	    bankOfWords.splice(randomNumber, 1);
-	    console.log("bank after splice", bankOfWords);
+	    
 	    return randWord;
     }
-
-
 
 	//replaces the letter from word and substitute it with blank
 	function getRandomLetter() {
 			    var  replaceWith= " "; 
 			    var randPos = Math.floor(Math.random()*replaceWith.length); 
-			    console.log(randWord[randPos]);
 				return replaceWith.charAt(randPos); 
 	}
 
 	//Taking a random letter from the word and called getRandLetter to replace the letter with ""
 	function substitute(randWordParam) { 
     	console.log('calling substitute');
-    	//unless 1 
 	    var subPos = Math.floor(Math.random()*randWordParam.length);
-        console.log('random index: ', subPos);			    
+   			    
 	    letterTaken = randWord[subPos];
 
 	    if (letterTaken == " ") {
@@ -179,10 +147,8 @@ $(document).ready(function() {
 	    }
 
 	    guessesInput[subPos]=letterTaken;
-	    console.log("letterTaken inside substitute:"+letterTaken);
-	    console.log(guessesInput, typeof guessesInput);
 
-	    $('#letters').fadeIn().append("<p class='letter'>" + letterTaken + "</p>");
+	    $('#letters').append("<p class='letter'>" + letterTaken + "</p>");
 	    return randWord.substring(0, subPos) + getRandomLetter() + randWord.substring(subPos+1); 
 	} 
 		
