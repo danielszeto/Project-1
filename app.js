@@ -13,24 +13,34 @@ console.log("linked");
 	
 $(document).ready(function() {
 	//console.log("hello");
+	
+	
 
-	//inititiates startGame funciton when start button is clicked
-	$('#startgame').on("click",startGame);
+	//initializes startGame function when start button is clicked
+	//uses the .one() method to disable start button after initial click
+	$('#startgame').one ("click", startGame);
+		
+	
+
 		// console.log("hello");
 
 	//Resets game when reset button is clicked
 	$('#resetgame').on("click",resetGame);
+		
+		
  
-  
 });
 
 //starts the game 
-		//initizes placeword and timer functions
+		//initializes placeword and timer functions
 		//hides the start button affer click
-	function startGame() {
+	function startGame( ) {
 		placeword();
 		timer();
-		$('#startgame').hide();
+		/*$('#startgame').hide();*/
+
+		
+
 
 		//loops over the word twice
 		for (var i = 0; i < 2; i++) {
