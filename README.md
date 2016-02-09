@@ -8,7 +8,7 @@ How to play:
 *You have 20 seconds after you press start to fill in as many words as possible!
 
 
-Play! https://www.bitballoon.com/sites/preacher-smoke-53225
+Play! http://preacher-smoke-53225.bitballoon.com/
 
 # Planning
 
