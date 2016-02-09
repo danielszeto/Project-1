@@ -12,7 +12,8 @@ Play! https://www.bitballoon.com/sites/preacher-smoke-53225
 
 # Planning
 
-* Trello: https://trello.com/b/vGZyZSdw/project-1-game
+* [Trello](https://trello.com/b/vGZyZSdw/project-1-game)
+* [WireFrame](https://drive.google.com/file/d/0B8WbU21wnMA9Ykpjc1AweDJkMnc/view?usp=sharing)
 
 # Technology Used
 
@@ -25,10 +26,14 @@ Play! https://www.bitballoon.com/sites/preacher-smoke-53225
 
 * Timer
 * Score Counter
-* The letters fade
+* The letters Fade
 
 # Planned Future Features
 
-* 
+* Touchable letters for mobile
+* Store the high score
+
 
 # How to Contribute
+
+Please email me at d.szeto123@gmail.com 
